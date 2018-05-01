@@ -1,0 +1,108 @@
+{
+    "name": "vscode-private-docker-registry-explorer",
+    "displayName": "Private Docker registry explorer",
+    "description": "Private Docker registry explorer.",
+    "version": "0.0.1",
+    "publisher": "TauqeerHassan",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onView:pvtDockerRegExplorer"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "views": {
+            "explorer": [
+                {
+                    "id": "pvtDockerRegExplorer",
+                    "name": "Private Docker Explorer"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "pvtDockerRegExplorer.addEntry",
+                "title": "Add"
+            },
+            {
+                "command": "pvtDockerRegExplorer.refreshEntry",
+                "title": "Refresh",
+                "icon": {
+                    "light": "resources/light/refresh.svg",
+                    "dark": "resources/dark/refresh.svg"
+                }
+            },
+            {
+                "command": "pvtDockerRegExplorer.deleteEntry",
+                "title": "Delete"
+            },
+            {
+                "command": "pvtDockerRegExplorer.layerNode.copyhash",
+                "title": "Copy hash"
+            },
+            {
+                "command": "pvtDockerRegExplorer.tagNode.pullimage",
+                "title": "Pull"
+            },
+            {
+                "command": "pvtDockerRegExplorer.tagNode.removelocalimage",
+                "title": "Remove local"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "pvtDockerRegExplorer.refreshEntry",
+                    "when": "view == pvtDockerRegExplorer",
+                    "group": "navigation"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.addEntry",
+                    "when": "view == pvtDockerRegExplorer"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "pvtDockerRegExplorer.deleteEntry",
+                    "when": "view == pvtDockerRegExplorer && viewItem == registryNode"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.layerNode.copyhash",
+                    "when": "view == pvtDockerRegExplorer && viewItem == layerNode"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.tagNode.pullimage",
+                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.tagNode.removelocalimage",
+                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42",
+        "@types/copy-paste": "^1.1.30",
+        "@types/keytar": "^4.0.1"
+    },
+    "dependencies": {
+        "typed-rest-client": "^1.0.7",
+        "copy-paste": "^1.3.0"
+    }
+}
