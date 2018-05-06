@@ -1,15 +1,36 @@
 {
     "name": "vscode-private-docker-registry-explorer",
-    "displayName": "Private Docker registry explorer",
-    "description": "Private Docker registry explorer.",
+    "displayName": "Docker registry explorer",
+    "description": "Explore and manage docker images in you private docker registry.",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "icon": "resources/docker_icon.png",
     "version": "0.0.1",
-    "publisher": "TauqeerHassan",
+    "galleryBanner": {
+        "color": "#1289B9",
+        "theme": "dark"
+    },
+    "author": {
+        "name": "Tauqeer Hassan",
+        "email": "tqrhsn@outlook.com"
+    },
+    "publisher": "TqrHsn",
     "engines": {
         "vscode": "^1.22.0"
     },
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "docker",
+        "explorer",
+        "registry",
+        "docker private registry",
+        "docker V2"
+    ],
+    "repository": {
+        "url": "https://github.com/<to-be-added>.git"
+    },
+    "homepage": "https://github.com/<to-be-added>/README.md",
     "activationEvents": [
         "onView:pvtDockerRegExplorer"
     ],
@@ -26,7 +47,7 @@
         "commands": [
             {
                 "command": "pvtDockerRegExplorer.addEntry",
-                "title": "Add"
+                "title": "Add registry"
             },
             {
                 "command": "pvtDockerRegExplorer.refreshEntry",
@@ -37,20 +58,36 @@
                 }
             },
             {
-                "command": "pvtDockerRegExplorer.deleteEntry",
+                "command": "pvtDockerRegExplorer.registryNode.refreshEntry",
+                "title": "Refresh"
+            },
+            {
+                "command": "pvtDockerRegExplorer.registryNode.deleteEntry",
                 "title": "Delete"
             },
             {
-                "command": "pvtDockerRegExplorer.layerNode.copyhash",
-                "title": "Copy hash"
+                "command": "pvtDockerRegExplorer.repositoryNode.refreshEntry",
+                "title": "Refresh"
             },
             {
-                "command": "pvtDockerRegExplorer.tagNode.pullimage",
+                "command": "pvtDockerRegExplorer.tagNode.pullImage",
                 "title": "Pull"
             },
             {
-                "command": "pvtDockerRegExplorer.tagNode.removelocalimage",
+                "command": "pvtDockerRegExplorer.tagNode.removeLocalImage",
                 "title": "Remove local"
+            },
+            {
+                "command": "pvtDockerRegExplorer.tagNode.removeRemoteImage",
+                "title": "Delete from repository"
+            },
+            {
+                "command": "pvtDockerRegExplorer.tagNode.loadMore",
+                "title": "Load more items"
+            },
+            {
+                "command": "pvtDockerRegExplorer.layerNode.copyDigest",
+                "title": "Copy digest"
             }
         ],
         "menus": {
@@ -67,20 +104,37 @@
             ],
             "view/item/context": [
                 {
-                    "command": "pvtDockerRegExplorer.deleteEntry",
-                    "when": "view == pvtDockerRegExplorer && viewItem == registryNode"
+                    "command": "pvtDockerRegExplorer.registryNode.refreshEntry",
+                    "when": "view == pvtDockerRegExplorer && viewItem == registryNode",
+                    "group": "group@1"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.layerNode.copyhash",
+                    "command": "pvtDockerRegExplorer.registryNode.deleteEntry",
+                    "when": "view == pvtDockerRegExplorer && viewItem == registryNode",
+                    "group": "group@2"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.repositoryNode.refreshEntry",
+                    "when": "view == pvtDockerRegExplorer && viewItem == repositoryNode"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.layerNode.copyDigest",
                     "when": "view == pvtDockerRegExplorer && viewItem == layerNode"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.tagNode.pullimage",
-                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode"
+                    "command": "pvtDockerRegExplorer.tagNode.pullImage",
+                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode",
+                    "group": "2_group1@1"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.tagNode.removelocalimage",
-                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode"
+                    "command": "pvtDockerRegExplorer.tagNode.removeLocalImage",
+                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode",
+                    "group": "2_group1@2"
+                },
+                {
+                    "command": "pvtDockerRegExplorer.tagNode.removeRemoteImage",
+                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode",
+                    "group": "3_group2@1"
                 }
             ]
         }

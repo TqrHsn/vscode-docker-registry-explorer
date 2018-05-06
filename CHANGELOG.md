@@ -1,7 +1,14 @@
 # Change Log
-All notable changes to the "vscode-private-docker-registry" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## 0.0.1 - 2018-05-06
 
-## [Unreleased]
-- Initial release
+### Added
+
+- Add a registry by providing url, user and password. (For now only Basic authentication is supported)
+- List repositories
+- List images
+- List layers
+- View size of a layer or whole image
+- Pull image
+- Remove pulled image
+- Delete image from your registry

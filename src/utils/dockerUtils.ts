@@ -46,7 +46,7 @@ export class DockerAPIV2Helper {
                 return [];
             }
         } catch (error) {
-            vscode.window.showErrorMessage(`Error occured while sending request to ${this.baseUrl}.` + error);
+            this.showRequestError(error);
         }
 
         return [];
@@ -65,7 +65,7 @@ export class DockerAPIV2Helper {
                 return null;
             }
         } catch (error) {
-            vscode.window.showErrorMessage(`Error occured while sending request to ${this.baseUrl}.` + error);
+            this.showRequestError(error);
         }
 
         return null;
@@ -84,10 +84,33 @@ export class DockerAPIV2Helper {
                 return null;
             }
         } catch (error) {
-            vscode.window.showErrorMessage(`Error occured while sending request to ${this.baseUrl}.` + error);
+            this.showRequestError(error);
         }
 
         return null;
+    }
+
+    async deleteManifestV2(repository: string, reference: string): Promise<ManifestV2 | null> {
+        try {
+            let resp = await this.restClient.del<ManifestV2>(`/v2/${repository}/manifests/${reference}`, { additionalHeaders: { 'Authorization': this.authHeader } });
+
+            if (resp.statusCode !== 200) {
+                vscode.window.showErrorMessage(`${this.baseUrl} returned ${resp.statusCode}.`);
+            }
+            if (resp.result) {
+                return resp.result;
+            } else {
+                return null;
+            }
+        } catch (error) {
+            this.showRequestError(error);
+        }
+
+        return null;
+    }
+
+    private showRequestError(error: any): void {
+        vscode.window.showErrorMessage(`Error occured while sending request to ${this.baseUrl}.\r\n` + error);
     }
 
 }
