@@ -35,14 +35,14 @@ export class RepositoryNode extends RootNode {
                 });
             }
 
-            let loadMore: vscode.TreeItem = {
-                label: 'load more...',
-                collapsibleState: vscode.TreeItemCollapsibleState.None,
-                command: { command: 'pvtDockerRegExplorer.tagNode.loadMore', title: 'More items' },
-                tooltip: 'click to load more items.'
-            };
+            // let loadMore: vscode.TreeItem = {
+            //     label: 'load more...',
+            //     collapsibleState: vscode.TreeItemCollapsibleState.None,
+            //     command: { command: 'pvtDockerRegExplorer.tagNode.loadMore', title: 'More items' },
+            //     tooltip: 'click to load more items.'
+            // };
 
-            chldrns.push(loadMore);
+            //chldrns.push(loadMore);
             resolve(chldrns);
         });
     }
