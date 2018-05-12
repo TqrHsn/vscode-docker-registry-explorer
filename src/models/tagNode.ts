@@ -19,8 +19,8 @@ export class TagNode extends RootNode {
         onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem>,
         parent: RootNode | undefined = undefined,
         public readonly iconPath:{ light: string; dark: string } | undefined = {
-            light: path.join(__filename, '..', '..', 'resources', 'light', 'Image_16x.svg'),
-            dark: path.join(__filename, '..', '..', 'resources', 'dark', 'Image_16x.svg')
+            light: path.join(__filename, '..', '..', '..','resources', 'light', 'Image_16x.svg'),
+            dark: path.join(__filename, '..', '..', '..','resources', 'dark', 'Image_16x.svg')
         }
     ) {
         super(label, collapsibleState, onDidChangeTreeData, parent);

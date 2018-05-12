@@ -10,8 +10,8 @@ export class LayerNode extends vscode.TreeItem {
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly layerItem: ManifestV2LayerItem,
         public readonly iconPath = {
-            light: path.join(__filename, '..', '..', 'resources', 'light', 'Layer_16x.svg'),
-            dark: path.join(__filename, '..', '..', 'resources', 'dark', 'Layer_16x.svg')
+            light: path.join(__filename, '..', '..', '..', 'resources', 'light', 'Layer_16x.svg'),
+            dark: path.join(__filename, '..', '..', '..', 'resources', 'dark', 'Layer_16x.svg')
         }
     ) {
         super('', collapsibleState);
