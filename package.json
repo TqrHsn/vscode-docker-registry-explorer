@@ -1,7 +1,7 @@
 {
-    "name": "vscode-private-docker-registry-explorer",
+    "name": "vscode-docker-registry-explorer",
     "displayName": "Docker registry explorer",
-    "description": "Explore and manage docker images in you private docker registry.",
+    "description": "Explore and manage Docker Images, for private Docker Registries.",
     "license": "SEE LICENSE IN LICENSE.txt",
     "icon": "resources/docker_icon.png",
     "version": "0.0.1",
