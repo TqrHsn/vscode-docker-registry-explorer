@@ -28,9 +28,9 @@
         "docker V2"
     ],
     "repository": {
-        "url": "https://github.com/<to-be-added>.git"
+        "url": "https://github.com/TqrHsn/vscode-docker-registry-explorer.git"
     },
-    "homepage": "https://github.com/<to-be-added>/README.md",
+    "homepage": "https://github.com/TqrHsn/vscode-docker-registry-explorer/blob/master/README.md",
     "activationEvents": [
         "onView:dockerRegistryExplorer"
     ],
