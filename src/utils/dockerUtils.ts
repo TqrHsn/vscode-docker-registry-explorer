@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as typedRestClient from 'typed-rest-client/RestClient';
 import { URL } from 'url';
-//import * as util from 'typed-rest-client/Util';
 
 export interface Tag {
     name: string;
