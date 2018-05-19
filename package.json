@@ -1,6 +1,6 @@
 {
     "name": "vscode-docker-registry-explorer",
-    "displayName": "Docker registry explorer",
+    "displayName": "Docker Registry Explorer",
     "description": "Explore and manage Docker Images, for private Docker Registries.",
     "license": "SEE LICENSE IN LICENSE.txt",
     "icon": "resources/docker_icon.png",
@@ -32,25 +32,25 @@
     },
     "homepage": "https://github.com/<to-be-added>/README.md",
     "activationEvents": [
-        "onView:pvtDockerRegExplorer"
+        "onView:dockerRegistryExplorer"
     ],
     "main": "./out/extension",
     "contributes": {
         "views": {
             "explorer": [
                 {
-                    "id": "pvtDockerRegExplorer",
-                    "name": "Private Docker Explorer"
+                    "id": "dockerRegistryExplorer",
+                    "name": "Docker Registry Explorer"
                 }
             ]
         },
         "commands": [
             {
-                "command": "pvtDockerRegExplorer.addEntry",
+                "command": "dockerRegistryExplorer.addEntry",
                 "title": "Add registry"
             },
             {
-                "command": "pvtDockerRegExplorer.refreshEntry",
+                "command": "dockerRegistryExplorer.refreshEntry",
                 "title": "Refresh",
                 "icon": {
                     "light": "resources/light/refresh.svg",
@@ -58,82 +58,78 @@
                 }
             },
             {
-                "command": "pvtDockerRegExplorer.registryNode.refreshEntry",
+                "command": "dockerRegistryExplorer.registryNode.refreshEntry",
                 "title": "Refresh"
             },
             {
-                "command": "pvtDockerRegExplorer.registryNode.deleteEntry",
+                "command": "dockerRegistryExplorer.registryNode.deleteEntry",
                 "title": "Delete"
             },
             {
-                "command": "pvtDockerRegExplorer.repositoryNode.refreshEntry",
+                "command": "dockerRegistryExplorer.repositoryNode.refreshEntry",
                 "title": "Refresh"
             },
             {
-                "command": "pvtDockerRegExplorer.tagNode.pullImage",
+                "command": "dockerRegistryExplorer.tagNode.pullImage",
                 "title": "Pull"
             },
             {
-                "command": "pvtDockerRegExplorer.tagNode.removeLocalImage",
+                "command": "dockerRegistryExplorer.tagNode.removeLocalImage",
                 "title": "Remove local"
             },
             {
-                "command": "pvtDockerRegExplorer.tagNode.removeRemoteImage",
+                "command": "dockerRegistryExplorer.tagNode.removeRemoteImage",
                 "title": "Delete from repository"
             },
             {
-                "command": "pvtDockerRegExplorer.tagNode.loadMore",
-                "title": "Load more items"
-            },
-            {
-                "command": "pvtDockerRegExplorer.layerNode.copyDigest",
+                "command": "dockerRegistryExplorer.layerNode.copyDigest",
                 "title": "Copy digest"
             }
         ],
         "menus": {
             "view/title": [
                 {
-                    "command": "pvtDockerRegExplorer.refreshEntry",
-                    "when": "view == pvtDockerRegExplorer",
+                    "command": "dockerRegistryExplorer.refreshEntry",
+                    "when": "view == dockerRegistryExplorer",
                     "group": "navigation"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.addEntry",
-                    "when": "view == pvtDockerRegExplorer"
+                    "command": "dockerRegistryExplorer.addEntry",
+                    "when": "view == dockerRegistryExplorer"
                 }
             ],
             "view/item/context": [
                 {
-                    "command": "pvtDockerRegExplorer.registryNode.refreshEntry",
-                    "when": "view == pvtDockerRegExplorer && viewItem == registryNode",
+                    "command": "dockerRegistryExplorer.registryNode.refreshEntry",
+                    "when": "view == dockerRegistryExplorer && viewItem == registryNode",
                     "group": "group@1"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.registryNode.deleteEntry",
-                    "when": "view == pvtDockerRegExplorer && viewItem == registryNode",
+                    "command": "dockerRegistryExplorer.registryNode.deleteEntry",
+                    "when": "view == dockerRegistryExplorer && viewItem == registryNode",
                     "group": "group@2"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.repositoryNode.refreshEntry",
-                    "when": "view == pvtDockerRegExplorer && viewItem == repositoryNode"
+                    "command": "dockerRegistryExplorer.repositoryNode.refreshEntry",
+                    "when": "view == dockerRegistryExplorer && viewItem == repositoryNode"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.layerNode.copyDigest",
-                    "when": "view == pvtDockerRegExplorer && viewItem == layerNode"
+                    "command": "dockerRegistryExplorer.layerNode.copyDigest",
+                    "when": "view == dockerRegistryExplorer && viewItem == layerNode"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.tagNode.pullImage",
-                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode",
+                    "command": "dockerRegistryExplorer.tagNode.pullImage",
+                    "when": "view == dockerRegistryExplorer && viewItem == tagNode",
                     "group": "2_group1@1"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.tagNode.removeLocalImage",
-                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode",
+                    "command": "dockerRegistryExplorer.tagNode.removeLocalImage",
+                    "when": "view == dockerRegistryExplorer && viewItem == tagNode",
                     "group": "2_group1@2"
                 },
                 {
-                    "command": "pvtDockerRegExplorer.tagNode.removeRemoteImage",
-                    "when": "view == pvtDockerRegExplorer && viewItem == tagNode",
+                    "command": "dockerRegistryExplorer.tagNode.removeRemoteImage",
+                    "when": "view == dockerRegistryExplorer && viewItem == tagNode",
                     "group": "3_group2@1"
                 }
             ]

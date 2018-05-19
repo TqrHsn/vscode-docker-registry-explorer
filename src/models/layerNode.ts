@@ -15,8 +15,7 @@ export class LayerNode extends vscode.TreeItem {
         }
     ) {
         super('', collapsibleState);
-
-        //let label: string = this.layerItem.digest.substr(7);
+        
         if (this.layerItem) {
             this.label = this.layerItem.digest;
             this.tooltip = 'Layer size: ' + Utility.formatBytes(this.layerItem.size);

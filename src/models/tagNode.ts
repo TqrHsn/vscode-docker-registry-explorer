@@ -8,8 +8,6 @@ import { RootNode } from './rootNode';
 
 export class TagNode extends RootNode {
 
-    //private manifestV2: ManifestV2 | undefined;
-
     constructor(
         public readonly label: string,
         public readonly tag: string,

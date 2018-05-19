@@ -19,12 +19,12 @@ import { RepositoryNode } from './models/repositoryNode';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-    const pvtDockerRegExplorer = new PrivateDockerExplorerProvider(context);
+    const dockerRegistryExplorer = new PrivateDockerExplorerProvider(context);
 
-    vscode.window.registerTreeDataProvider('pvtDockerRegExplorer', pvtDockerRegExplorer);
+    vscode.window.registerTreeDataProvider('dockerRegistryExplorer', dockerRegistryExplorer);
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.refreshEntry', () => pvtDockerRegExplorer.refresh());
-    vscode.commands.registerCommand('pvtDockerRegExplorer.addEntry', async node => {
+    vscode.commands.registerCommand('dockerRegistryExplorer.refreshEntry', () => dockerRegistryExplorer.refresh());
+    vscode.commands.registerCommand('dockerRegistryExplorer.addEntry', async node => {
         let keytar: typeof keytarType = Utility.getCoreNodeModule('keytar');
 
         let regUrl: string | undefined = await vscode.window.showInputBox({
@@ -52,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
                             let nodesData: string[] = context.globalState.get(Globals.GLOBAL_STATE_REGS_KEY, []);
                             nodesData.push(url.toString());
                             context.globalState.update(Globals.GLOBAL_STATE_REGS_KEY, nodesData);
-                            pvtDockerRegExplorer.refresh();
+                            dockerRegistryExplorer.refresh();
                             keytar.setPassword(Globals.KEYTAR_SECRETS_KEY, `${url.toString()}.${Globals.KEYTAR_SECRETS_ACCOUNT_USER_POSTFIX_KEY}`, username);
                             keytar.setPassword(Globals.KEYTAR_SECRETS_KEY, `${url.toString()}.${Globals.KEYTAR_SECRETS_ACCOUNT_PASSWORD_POSTFIX_KEY}`, password);
                         }
@@ -65,8 +65,8 @@ export function activate(context: vscode.ExtensionContext) {
 
     });
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.registryNode.refreshEntry', (node: RegistryNode) => node.refresh());
-    vscode.commands.registerCommand('pvtDockerRegExplorer.registryNode.deleteEntry', async (node: RegistryNode) => {
+    vscode.commands.registerCommand('dockerRegistryExplorer.registryNode.refreshEntry', (node: RegistryNode) => node.refresh());
+    vscode.commands.registerCommand('dockerRegistryExplorer.registryNode.deleteEntry', async (node: RegistryNode) => {
         let regName = node.key;
         const result = await vscode.window.showWarningMessage(`Delete entry for '${regName}'?`, { title: 'Yes' } as MessageItem, { title: 'No', isCloseAffordance: true } as MessageItem);
         if (result && result.title === 'Yes') {
@@ -85,14 +85,14 @@ export function activate(context: vscode.ExtensionContext) {
                 if (isUserDeleted && isPassDeleted) {
                     vscode.window.showInformationMessage(`Registry settings for '${regName}' successfully deleted.`);
                 }
-                pvtDockerRegExplorer.refresh();
+                dockerRegistryExplorer.refresh();
             }
         }
     });
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.repositoryNode.refreshEntry', (node: RepositoryNode) => node.refresh());
+    vscode.commands.registerCommand('dockerRegistryExplorer.repositoryNode.refreshEntry', (node: RepositoryNode) => node.refresh());
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.tagNode.pullImage', async (node: TagNode) => {
+    vscode.commands.registerCommand('dockerRegistryExplorer.tagNode.pullImage', async (node: TagNode) => {
         let imageName: string = node.getImageName();
         const command = await vscode.window.showInputBox({
             prompt: `Run this command to pull image?`,
@@ -107,7 +107,7 @@ export function activate(context: vscode.ExtensionContext) {
         terminal.sendText(command, false);
     });
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.tagNode.removeLocalImage', async (node: TagNode) => {
+    vscode.commands.registerCommand('dockerRegistryExplorer.tagNode.removeLocalImage', async (node: TagNode) => {
         let imageName: string = node.getImageName();
         const command = await vscode.window.showInputBox({
             prompt: `Run this command to remove image?`,
@@ -122,18 +122,14 @@ export function activate(context: vscode.ExtensionContext) {
         terminal.sendText(command, false);
     });
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.tagNode.removeRemoteImage', async (node: TagNode) => {
+    vscode.commands.registerCommand('dockerRegistryExplorer.tagNode.removeRemoteImage', async (node: TagNode) => {
         const result = await vscode.window.showWarningMessage(`Delete '${node.getImageName()}' from your docker repository?`, { title: 'Yes' } as MessageItem, { title: 'No', isCloseAffordance: true } as MessageItem);
         if (result && result.title === 'Yes') {
             await node.deleteFromRepository();
         }
     });
 
-    vscode.commands.registerCommand('pvtDockerRegExplorer.tagNode.loadMore', async (node: TagNode) => {
-        vscode.window.showInformationMessage('loading more items.');
-    });
-
-    vscode.commands.registerCommand('pvtDockerRegExplorer.layerNode.copyDigest', (node: LayerNode) => {
+    vscode.commands.registerCommand('dockerRegistryExplorer.layerNode.copyDigest', (node: LayerNode) => {
         let hash = node.layerItem.digest;
         copyPaste.copy(hash);
         vscode.window.setStatusBarMessage(`The digest value "${hash}" is copied to clipboard.`, 3000);

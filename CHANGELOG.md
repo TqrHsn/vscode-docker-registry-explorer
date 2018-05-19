@@ -4,11 +4,11 @@
 
 ### Added
 
-- Add a registry by providing url, user and password. (For now only Basic authentication is supported)
+- Add registries endpoints
 - List repositories
 - List images
 - List layers
 - View size of a layer or whole image
 - Pull image
 - Remove pulled image
-- Delete image from your registry
+- Delete image from registry

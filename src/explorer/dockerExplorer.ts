@@ -43,14 +43,5 @@ export class PrivateDockerExplorerProvider implements vscode.TreeDataProvider<vs
         } else {
             return element.getChildren();
         }
-
-        // if (element.contextValue === 'registryNode') {
-        //     return (element as RegistryNode).getChildren();
-        // } else if (element.contextValue === 'repositoryNode') {
-        //     return (element as RepositoryNode).getChildren();
-        // } else if (element.contextValue === 'tagNode') {
-
-        //     return (element as TagNode).getChildren(undefined, this._onDidChangeTreeData);
-        // }
     }
 }

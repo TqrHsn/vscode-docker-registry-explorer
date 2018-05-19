@@ -34,15 +34,6 @@ export class RepositoryNode extends RootNode {
                     chldrns.push(new TagNode(tag, tag, TreeItemCollapsibleState.Collapsed, this.label, this.dockerAPIV2Helper, this.onDidChangeTreeData, this));
                 });
             }
-
-            // let loadMore: vscode.TreeItem = {
-            //     label: 'load more...',
-            //     collapsibleState: vscode.TreeItemCollapsibleState.None,
-            //     command: { command: 'pvtDockerRegExplorer.tagNode.loadMore', title: 'More items' },
-            //     tooltip: 'click to load more items.'
-            // };
-
-            //chldrns.push(loadMore);
             resolve(chldrns);
         });
     }
