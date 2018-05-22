@@ -4,7 +4,7 @@
     "description": "Explore and manage Docker Images, for private Docker Registries.",
     "license": "SEE LICENSE IN LICENSE.txt",
     "icon": "resources/docker_icon.png",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "galleryBanner": {
         "color": "#1289B9",
         "theme": "dark"

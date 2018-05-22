@@ -42,6 +42,3 @@ No other requirements.
 - [Docker API V2](https://docs.docker.com/registry/spec/api/) based registries are supported only.
 - For now only [Basic Authentication](https://swagger.io/docs/specification/authentication/basic-authentication/)  is supported.
 
-### 0.0.1
-
-Initial release.

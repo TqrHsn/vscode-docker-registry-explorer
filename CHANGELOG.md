@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.1.1 - 2018-05-22
+
+### Added
+
+- Better user messages for regisrty url input
+- Docker image tags are now lexicographically sorted (except for the 'latest' tag that will be always on top)
+
 ## 0.0.1 - 2018-05-06
 
 ### Added

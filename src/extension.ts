@@ -27,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         let regUrl: string | undefined = await vscode.window.showInputBox({
             ignoreFocusOut: true,
+            placeHolder:'https://myregistry.io',
             prompt: 'Registry url',
             validateInput: (value: string): string => {
                 try {
@@ -35,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
                     retVal = "";
                     return retVal;
                 } catch (error) {
-                    return `Please enter a valid url. ${error}`;
+                    return `Please enter a valid url (A valid url begins with 'http://' or 'https://'). ${error}`;
                 }
             }
         });

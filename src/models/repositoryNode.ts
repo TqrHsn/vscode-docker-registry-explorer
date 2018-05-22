@@ -15,8 +15,8 @@ export class RepositoryNode extends RootNode {
         onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem>,
         parent: RootNode | undefined = undefined,
         public readonly iconPath = {
-            light: path.join(__filename, '..', '..','..', 'resources', 'light', 'Repository_16x.svg'),
-            dark: path.join(__filename, '..', '..', '..','resources', 'dark', 'Repository_16x.svg')
+            light: path.join(__filename, '..', '..', '..', 'resources', 'light', 'Repository_16x.svg'),
+            dark: path.join(__filename, '..', '..', '..', 'resources', 'dark', 'Repository_16x.svg')
         }
     ) {
         super(label, collapsibleState, onDidChangeTreeData, parent);
@@ -34,6 +34,23 @@ export class RepositoryNode extends RootNode {
                     chldrns.push(new TagNode(tag, tag, TreeItemCollapsibleState.Collapsed, this.label, this.dockerAPIV2Helper, this.onDidChangeTreeData, this));
                 });
             }
+
+            (chldrns as TagNode[]).sort((a: TagNode, b: TagNode): number => {
+                if (a.tag === 'latest') {
+                    return -1;
+                }
+                if (b.tag === 'latest') {
+                    return 1;
+                }
+                if (a.tag < b.tag) {
+                    return 1;
+                }
+                if (a.tag > b.tag) {
+                    return -1;
+                }
+                return 0;
+            });
+
             resolve(chldrns);
         });
     }
