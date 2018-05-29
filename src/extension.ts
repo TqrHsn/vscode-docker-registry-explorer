@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         let regUrl: string | undefined = await vscode.window.showInputBox({
             ignoreFocusOut: true,
-            placeHolder:'https://myregistry.io',
+            placeHolder: 'https://myregistry.io',
             prompt: 'Registry url',
             validateInput: (value: string): string => {
                 try {
@@ -90,6 +90,12 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     vscode.commands.registerCommand('dockerRegistryExplorer.repositoryNode.refreshEntry', (node: RepositoryNode) => node.refresh());
+
+    vscode.commands.registerCommand('dockerRegistryExplorer.tagNode.copyName', async (node: TagNode) => {
+        let imageName: string = node.getImageName();
+        copyPaste.copy(imageName);
+        vscode.window.setStatusBarMessage(`The image name "${imageName}" is copied to clipboard.`, 3000);
+    });
 
     vscode.commands.registerCommand('dockerRegistryExplorer.tagNode.pullImage', async (node: TagNode) => {
         let imageName: string = node.getImageName();

@@ -70,6 +70,10 @@
                 "title": "Refresh"
             },
             {
+                "command": "dockerRegistryExplorer.tagNode.copyName",
+                "title": "Copy name"
+            },
+            {
                 "command": "dockerRegistryExplorer.tagNode.pullImage",
                 "title": "Pull"
             },
@@ -118,14 +122,19 @@
                     "when": "view == dockerRegistryExplorer && viewItem == layerNode"
                 },
                 {
-                    "command": "dockerRegistryExplorer.tagNode.pullImage",
+                    "command": "dockerRegistryExplorer.tagNode.copyName",
                     "when": "view == dockerRegistryExplorer && viewItem == tagNode",
                     "group": "2_group1@1"
                 },
                 {
-                    "command": "dockerRegistryExplorer.tagNode.removeLocalImage",
+                    "command": "dockerRegistryExplorer.tagNode.pullImage",
                     "when": "view == dockerRegistryExplorer && viewItem == tagNode",
                     "group": "2_group1@2"
+                },
+                {
+                    "command": "dockerRegistryExplorer.tagNode.removeLocalImage",
+                    "when": "view == dockerRegistryExplorer && viewItem == tagNode",
+                    "group": "2_group1@3"
                 },
                 {
                     "command": "dockerRegistryExplorer.tagNode.removeRemoteImage",
