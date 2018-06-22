@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.2
+
+### Added
+- If docker iamge tags are numbers, will be sorted as a number
+
 ## 0.1.1 - 2018-05-22
 
 ### Added

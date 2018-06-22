@@ -42,12 +42,23 @@ export class RepositoryNode extends RootNode {
                 if (b.tag === 'latest') {
                     return 1;
                 }
-                if (a.tag < b.tag) {
-                    return 1;
+
+                if (!isNaN(+a.tag) && !isNaN(+b.tag)) {
+                    if (+a.tag < +b.tag) {
+                        return 1;
+                    }
+                    if (+a.tag > +b.tag) {
+                        return -1;
+                    }
+                } else {
+                    if (a.tag < b.tag) {
+                        return 1;
+                    }
+                    if (a.tag > b.tag) {
+                        return -1;
+                    }
                 }
-                if (a.tag > b.tag) {
-                    return -1;
-                }
+
                 return 0;
             });
 
