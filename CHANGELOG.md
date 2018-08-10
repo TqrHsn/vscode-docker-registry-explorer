@@ -1,6 +1,14 @@
 # Change Log
 
-## 0.1.2
+## 0.1.3 - 2018-08-10
+
+### Added
+- Small UI tweaks
+
+### Fixed
+- Fixed errors on image deletion from registry
+
+## 0.1.2 - 2018-06-22
 
 ### Added
 - If docker iamge tags are numbers, will be sorted as a number

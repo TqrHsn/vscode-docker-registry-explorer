@@ -8,6 +8,11 @@ import { RootNode } from './rootNode';
 
 export class RepositoryNode extends RootNode {
 
+    private _chldrenCount: number = 0;
+    public get chldrenCount(): number {
+        return this._chldrenCount;
+    }
+
     constructor(
         public readonly label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
@@ -62,6 +67,7 @@ export class RepositoryNode extends RootNode {
                 return 0;
             });
 
+            this._chldrenCount = chldrns.length;
             resolve(chldrns);
         });
     }

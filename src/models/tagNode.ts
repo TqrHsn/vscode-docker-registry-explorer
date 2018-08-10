@@ -16,9 +16,9 @@ export class TagNode extends RootNode {
         private readonly dockerAPIV2Helper: DockerAPIV2Helper,
         onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem>,
         parent: RootNode | undefined = undefined,
-        public readonly iconPath:{ light: string; dark: string } | undefined = {
-            light: path.join(__filename, '..', '..', '..','resources', 'light', 'Image_16x.svg'),
-            dark: path.join(__filename, '..', '..', '..','resources', 'dark', 'Image_16x.svg')
+        public readonly iconPath: { light: string; dark: string } | undefined = {
+            light: path.join(__filename, '..', '..', '..', 'resources', 'light', 'Image_16x.svg'),
+            dark: path.join(__filename, '..', '..', '..', 'resources', 'dark', 'Image_16x.svg')
         }
     ) {
         super(label, collapsibleState, onDidChangeTreeData, parent);
@@ -57,11 +57,9 @@ export class TagNode extends RootNode {
         return imageName;
     }
 
-    async deleteFromRepository(): Promise<void> {
-        await this.dockerAPIV2Helper.deleteManifestV2(this.repository, this.tag);
-        if (this.parent) {
-            this.parent.refresh();
-        }
+    async deleteFromRepository(): Promise<boolean> {
+        let res: boolean = await this.dockerAPIV2Helper.deleteManifestV2(this.repository, this.tag);
+        return res;
     }
 
     contextValue = 'tagNode';

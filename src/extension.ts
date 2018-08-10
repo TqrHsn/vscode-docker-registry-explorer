@@ -130,7 +130,18 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('dockerRegistryExplorer.tagNode.removeRemoteImage', async (node: TagNode) => {
         const result = await vscode.window.showWarningMessage(`Delete '${node.getImageName()}' from your docker repository?`, { title: 'Yes' } as MessageItem, { title: 'No', isCloseAffordance: true } as MessageItem);
         if (result && result.title === 'Yes') {
-            await node.deleteFromRepository();
+            let res: boolean = await node.deleteFromRepository();
+
+            if (res) {
+                if (node.parent) {
+                    let repoNode: RepositoryNode = node.parent as RepositoryNode;
+                    if (repoNode.chldrenCount !== 1) {
+                        repoNode.refresh();
+                    }else if(repoNode.parent){
+                        repoNode.parent.refresh();
+                    }
+                }
+            }
         }
     });
 

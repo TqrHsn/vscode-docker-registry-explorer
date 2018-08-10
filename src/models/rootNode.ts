@@ -5,7 +5,7 @@ export abstract class RootNode extends vscode.TreeItem {
         public readonly label: string,
         public collapsibleState: vscode.TreeItemCollapsibleState,
         protected readonly onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem>,
-        protected readonly parent: RootNode | undefined = undefined
+        public readonly parent: RootNode | undefined = undefined
     ) {
         super(label, collapsibleState);
     }

@@ -89,23 +89,20 @@ export class DockerAPIV2Helper {
         return null;
     }
 
-    async deleteManifestV2(repository: string, reference: string): Promise<ManifestV2 | null> {
+    async deleteManifestV2(repository: string, reference: string): Promise<boolean> {
         try {
             let resp = await this.restClient.del<ManifestV2>(`/v2/${repository}/manifests/${reference}`, { additionalHeaders: { 'Authorization': this.authHeader } });
 
-            if (resp.statusCode !== 200) {
+            if (resp.statusCode !== 202) {
                 vscode.window.showErrorMessage(`${this.baseUrl} returned ${resp.statusCode}.`);
-            }
-            if (resp.result) {
-                return resp.result;
-            } else {
-                return null;
+            }else{
+                return true;
             }
         } catch (error) {
             this.showRequestError(error);
         }
 
-        return null;
+        return false;
     }
 
     private showRequestError(error: any): void {
